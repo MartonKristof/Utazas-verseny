@@ -12,14 +12,14 @@ namespace eUtazás
     internal struct Utazas
     {
         private string Allomas { get; set; }
-        private int Ido { get; set; }
+        private string Ido { get; set; }
         private int Id { get; set; }
         private string Berlet_type { get; set; }
         private int Lejar_ido { get; set; }
 
 
 
-        public Utazas(string allomas, int ido, int id, string berlet_type, int lejar_ido)
+        public Utazas(string allomas, string ido, int id, string berlet_type, int lejar_ido)
         {
             Allomas = allomas;
             Ido = ido;
@@ -29,7 +29,7 @@ namespace eUtazás
         }
 
         public string GetAllomas() => Allomas;
-        public int GetIdo() => Ido;
+        public string GetIdo() => Ido;
         public int GetId() => Id;
         public string GetBerlet_type() => Berlet_type;
         public int GetLejar_ido() => Lejar_ido;
@@ -49,7 +49,7 @@ namespace eUtazás
                     var elemek = sor.Split(' ');
 
                     string allomas = elemek[0];
-                    int ido = int.Parse(elemek[1]);
+                    string ido = elemek[1];
                     int id = int.Parse(elemek[2]);
                     string berlet_type = elemek[3];
                     int lejar_ido = int.Parse(elemek[4]);
@@ -66,14 +66,13 @@ namespace eUtazás
         }
         static void Main(string[] args)
         {
-            var fajlNev = "";
+            var fajlNev = "utasadat.txt";
 
             List<Utazas> utazasAdatok = BeolvasasAdatok(fajlNev);
             Console.ForegroundColor = ConsoleColor.Green;
             foreach (var adat in utazasAdatok)
             {
-                Console.WriteLine($"|{adat.GetAllomas()}|{adat.GetIdo()}|{adat.GetId()}|{adat.GetBerlet_type()}|{adat.GetLejar_ido()}");
-                Console.WriteLine(new string('-', 23));
+                Console.WriteLine($"|{adat.GetAllomas(),2}|{adat.GetIdo()}|{adat.GetId()}|{adat.GetBerlet_type()}|{adat.GetLejar_ido(),8}|");
             }
             Console.ReadKey();
 
