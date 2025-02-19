@@ -64,6 +64,39 @@ namespace eUtazás
             }
             return adatok;
         }
+
+         static string LegnepszerubbAllomas(List<Utazas> utazasAdatok)
+        {
+            Dictionary<string, int> allomasSzamlalo = new Dictionary<string, int>();
+
+            foreach (var utazas in utazasAdatok)
+            {
+                if (allomasSzamlalo.ContainsKey(utazas.GetAllomas()))
+                {
+                    allomasSzamlalo[utazas.GetAllomas()]++;
+                }
+                else
+                {
+                    allomasSzamlalo[utazas.GetAllomas()] = 1;
+                }
+            }
+
+            string legtobbAllomas = "";
+            int maxSzam = 0;
+
+            foreach (var par in allomasSzamlalo)
+            {
+                if (par.Value > maxSzam)
+                {
+                    legtobbAllomas = par.Key;
+                    maxSzam = par.Value;
+                }
+            }
+
+            return legtobbAllomas;
+        }
+
+
         static void Main(string[] args)
         {
             var fajlNev = "utasadat.txt";
@@ -74,6 +107,12 @@ namespace eUtazás
             {
                 Console.WriteLine($"|{adat.GetAllomas(),2}|{adat.GetIdo()}|{adat.GetId()}|{adat.GetBerlet_type()}|{adat.GetLejar_ido(),8}|");
             }
+
+
+            string legnepszerubb = LegnepszerubbAllomas(utazasAdatok);
+            Console.WriteLine("\nA legtöbb felszállási próbálkozás itt történt: " + legnepszerubb);
+
+
             Console.ReadKey();
 
         }
