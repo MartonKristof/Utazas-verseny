@@ -64,6 +64,31 @@ namespace eUtazás
             }
             return adatok;
         }
+
+        static void mennyiutas (List<Utazas> utazas)
+        {
+            Console.WriteLine("2. feladat");
+            int mennyi = 0;
+            foreach (var item in utazas)
+            {
+                mennyi++;
+            }
+            
+            Console.WriteLine($"A buszra {mennyi} utas akart felszállni");
+        }
+
+        static void nemszallhatfel (List<Utazas> utazas)
+        {
+            int mennyi = 0;
+            foreach (var item in utazas)
+            {
+                if (item.GetLejar_ido() <= 20190326 || item.GetLejar_ido() == 0)
+                {
+                    mennyi++;
+                }
+            }
+            Console.WriteLine($"A buszra {mennyi} utas nem szálhatott fel");
+        }
         static void Main(string[] args)
         {
             var fajlNev = "utasadat.txt";
@@ -74,6 +99,10 @@ namespace eUtazás
             {
                 Console.WriteLine($"|{adat.GetAllomas(),2}|{adat.GetIdo()}|{adat.GetId()}|{adat.GetBerlet_type()}|{adat.GetLejar_ido(),8}|");
             }
+
+            mennyiutas( utazasAdatok);
+            nemszallhatfel( utazasAdatok);
+
             Console.ReadKey();
 
         }
