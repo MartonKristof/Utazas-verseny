@@ -65,6 +65,40 @@ namespace eUtazás
             return adatok;
         }
 
+<<<<<<< HEAD
+         static string LegnepszerubbAllomas(List<Utazas> utazasAdatok)
+        {
+            Dictionary<string, int> allomasSzamlalo = new Dictionary<string, int>();
+
+            foreach (var utazas in utazasAdatok)
+            {
+                if (allomasSzamlalo.ContainsKey(utazas.GetAllomas()))
+                {
+                    allomasSzamlalo[utazas.GetAllomas()]++;
+                }
+                else
+                {
+                    allomasSzamlalo[utazas.GetAllomas()] = 1;
+                }
+            }
+
+            string legtobbAllomas = "";
+            int maxSzam = 0;
+
+            foreach (var par in allomasSzamlalo)
+            {
+                if (par.Value > maxSzam)
+                {
+                    legtobbAllomas = par.Key;
+                    maxSzam = par.Value;
+                }
+            }
+
+            return legtobbAllomas;
+        }
+
+
+=======
         static void mennyiutas (List<Utazas> utazas)
         {
             Console.WriteLine("2. feladat");
@@ -89,6 +123,7 @@ namespace eUtazás
             }
             Console.WriteLine($"A buszra {mennyi} utas nem szálhatott fel");
         }
+<<<<<<< HEAD
 
         static void kendezmenyesingyenes(List<Utazas> utazas)
         {
@@ -132,6 +167,9 @@ namespace eUtazás
 
         }
 
+=======
+>>>>>>> e4e69c66f04e039ce6f96d7bda69d714b893d4aa
+>>>>>>> 722a79744a7c47516ce1f0fc693804b112ea81b4
         static void Main(string[] args)
         {
             var fajlNev = "utasadat.txt";
@@ -143,8 +181,15 @@ namespace eUtazás
                 Console.WriteLine($"|{adat.GetAllomas(),2}|{adat.GetIdo()}|{adat.GetId()}|{adat.GetBerlet_type()}|{adat.GetLejar_ido(),8}|");
             }
 
+<<<<<<< HEAD
+
+            string legnepszerubb = LegnepszerubbAllomas(utazasAdatok);
+            Console.WriteLine("\nA legtöbb felszállási próbálkozás itt történt: " + legnepszerubb);
+
+=======
             mennyiutas( utazasAdatok);
             nemszallhatfel( utazasAdatok);
+>>>>>>> e4e69c66f04e039ce6f96d7bda69d714b893d4aa
 
             Console.ReadKey();
 
