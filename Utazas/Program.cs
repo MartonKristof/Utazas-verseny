@@ -52,7 +52,7 @@ namespace eUtazás
                     string ido = elemek[1];
                     int id = int.Parse(elemek[2]);
                     string berlet_type = elemek[3];
-                    int lejar_ido = elemek[4];
+                    string lejar_ido = elemek[4];
 
                     adatok.Add(new Utazas(allomas, ido, id, berlet_type, lejar_ido));
                 }
@@ -65,8 +65,7 @@ namespace eUtazás
             return adatok;
         }
 
-<<<<<<< HEAD
-         static string LegnepszerubbAllomas(List<Utazas> utazasAdatok)
+        static string LegnepszerubbAllomas(List<Utazas> utazasAdatok)
         {
             Dictionary<string, int> allomasSzamlalo = new Dictionary<string, int>();
 
@@ -97,59 +96,54 @@ namespace eUtazás
             return legtobbAllomas;
         }
 
-
-=======
-        static void mennyiutas (List<Utazas> utazas)
+        static void mennyiutas(List<Utazas> utazas)
         {
             Console.WriteLine("2. feladat");
-            int mennyi = 0;
-            foreach (var item in utazas)
-            {
-                mennyi++;
-            }
-            
+            int mennyi = utazas.Count;
             Console.WriteLine($"A buszra {mennyi} utas akart felszállni");
         }
 
-        static void nemszallhatfel (List<Utazas> utazas)
+        static void nemszallhatfel(List<Utazas> utazas)
         {
             int mennyi = 0;
             foreach (var item in utazas)
             {
-                if (item.GetLejar_ido()  || item.GetLejar_ido() == "0")
+                if (item.GetLejar_ido() == "0")
                 {
                     mennyi++;
                 }
             }
             Console.WriteLine($"A buszra {mennyi} utas nem szálhatott fel");
         }
-<<<<<<< HEAD
 
         static void kendezmenyesingyenes(List<Utazas> utazas)
         {
             int kedvezmenyes = 0;
             int ingyenes = 0;
-            foreach(var item in utazas)
+            foreach (var item in utazas)
             {
-                if ()
+                if (item.GetBerlet_type() == "TAB" || item.GetBerlet_type() == "NYB")
                 {
-                    if (item.GetBerlet_type() == "TAB" || item.GetBerlet_type() == "NYB")
-                    {
-                        kedvezmenyes++;
-                        Console.WriteLine($"A kedvezmenyesen utazók száma :{kedvezmenyes} ");
-                    }
-                    else if (item.GetBerlet_type() == "NYP" || item.GetBerlet_type() == "RVS" || item.GetBerlet_type() == "GYK")
-                    {
-                        ingyenes++;
-                        Console.WriteLine($"Ingyenesen utazók száma: {ingyenes}");
-                    }
-                    
+                    kedvezmenyes++;
+                }
+                else if (item.GetBerlet_type() == "NYP" || item.GetBerlet_type() == "RVS" || item.GetBerlet_type() == "GYK")
+                {
+                    ingyenes++;
                 }
             }
-        } 
+            Console.WriteLine($"A kedvezmenyesen utazók száma: {kedvezmenyes}");
+            Console.WriteLine($"Ingyenesen utazók száma: {ingyenes}");
+        }
 
         static void napokszama(List<Utazas> utazas)
         {
+            int h1 = 0;
+            int e1 = 0;
+            int d1 = 0;
+            int h2 = 0;
+            int e2 = 0;
+            int d2 = 0;
+
             Console.WriteLine();
             h1 = (h1 + 9) % 12;
 
@@ -163,13 +157,11 @@ namespace eUtazás
 
             d2 = 365 * e2 + e2 / 4 - e2 / 100 + e2 / 400 + (h2 * 306 + 5) / 10 + d2 - 1;
 
-            napokszama = d2 - d1;
+            int napokszama = d2 - d1;
 
+            Console.WriteLine($"Napok száma: {napokszama}");
         }
 
-=======
->>>>>>> e4e69c66f04e039ce6f96d7bda69d714b893d4aa
->>>>>>> 722a79744a7c47516ce1f0fc693804b112ea81b4
         static void Main(string[] args)
         {
             var fajlNev = "utasadat.txt";
@@ -181,15 +173,13 @@ namespace eUtazás
                 Console.WriteLine($"|{adat.GetAllomas(),2}|{adat.GetIdo()}|{adat.GetId()}|{adat.GetBerlet_type()}|{adat.GetLejar_ido(),8}|");
             }
 
-<<<<<<< HEAD
-
             string legnepszerubb = LegnepszerubbAllomas(utazasAdatok);
             Console.WriteLine("\nA legtöbb felszállási próbálkozás itt történt: " + legnepszerubb);
 
-=======
-            mennyiutas( utazasAdatok);
-            nemszallhatfel( utazasAdatok);
->>>>>>> e4e69c66f04e039ce6f96d7bda69d714b893d4aa
+            mennyiutas(utazasAdatok);
+            nemszallhatfel(utazasAdatok);
+            kendezmenyesingyenes(utazasAdatok);
+            napokszama(utazasAdatok);
 
             Console.ReadKey();
 
